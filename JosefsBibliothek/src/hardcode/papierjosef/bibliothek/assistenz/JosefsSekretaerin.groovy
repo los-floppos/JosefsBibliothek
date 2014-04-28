@@ -11,12 +11,10 @@ class JosefsSekretaerin {
 		OpenNlpSekretaerin.instanz=new OpenNlpSekretaerin(sprache);
 		dokument = new Dokument(text);
 	}
-	
+
 	public GrundlegendeStatistik errechneStatistik(){
 		GrundlegendeStatistik stat=new GrundlegendeStatistik();
-		stat.zahlDerAbsaetze=dokument.absaetze.size();
-		dokument.absaetze.each {stat.zahlDerSaetze+=it.saetze.size()};
-		dokument.absaetze.each { it.saetze.each{ stat.zahlDerWoerter+=it.woerter.findAll{!it.wort.equals(".")}.size()}};
+		stat.errechne(dokument);
 		return stat;
 	}
 
