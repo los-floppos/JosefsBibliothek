@@ -6,7 +6,7 @@ class Satz {
 	
 	def woerter = [];
 	
-	def anzahlWortarten = [Wortart:Integer];
+	def anzahlWortarten = [:];
 
 	public Satz (String text) {
 		String[] tokens=OpenNlpSekretaerin.getInstanz().tokenizer.tokenize(text);
