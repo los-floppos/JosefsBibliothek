@@ -23,7 +23,7 @@ class JosefsSekretaerin {
 		dokument.absaetze.each{
 			it.saetze.each{
 				str+="{"; it.woerter.each{
-					str+=it.wort + "/" + it.satzteil + " "
+					str+=it.wort + "/" + it.wortart + " "
 				};
 				str+="}, ";
 			};

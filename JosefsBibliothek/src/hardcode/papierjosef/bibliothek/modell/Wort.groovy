@@ -2,10 +2,10 @@ package hardcode.papierjosef.bibliothek.modell
 
 class Wort {
 	String wort;
-	String satzteil;
+	Wortart wortart;
 	
-	public Wort(String token,String satzteil){
-		this.wort=token;
-		this.satzteil=satzteil;
+	public Wort(String token, Wortart wortart){
+		this.wort = token;
+		this.wortart = wortart;
 	}
 }

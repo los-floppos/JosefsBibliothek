@@ -15,6 +15,6 @@ class GrundlegendeStatistik {
 	public void errechne(Dokument dokument){
 		zahlDerAbsaetze=dokument.absaetze.size();
 		dokument.absaetze.each {zahlDerSaetze+=it.saetze.size()};
-		dokument.absaetze.each { it.saetze.each{ zahlDerWoerter+=it.woerter.findAll{!it.wort.equals(".") && !it.wort.equals(",")}.size()}};
+		dokument.absaetze.each { it.saetze.each{ zahlDerWoerter+=it.woerter.findAll{!it.wortart.equals(Wortart.XKOMMA) && !it.wortart.equals(Wortart.XSATZENDE) && !it.wortart.equals(Wortart.XSONST)}.size()}};
 	}
 }
