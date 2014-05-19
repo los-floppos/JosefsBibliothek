@@ -11,14 +11,17 @@ public class Dokument extends TextElement {
 
 	public Dokument(String text) {
 		super(text, 0);
-		
+
 		absaetze = new ArrayList<Absatz>();
 		anzahlWortarten = new HashMap<Wortart, Integer>();
 
 		long laenge = 0;
 
-		for (String a : text.split("\\n")) {
-			Absatz absatz = new Absatz(a, laenge);
+		String[] abs = text.split("\\n");
+		for (int i = 0; i < abs.length; i++) {
+			Absatz absatz = new Absatz(abs[i], laenge, laenge
+					+ ((i == abs.length - 1) ? abs[i].length()
+							: (abs[i].length() + 1)));
 
 			absaetze.add(absatz);
 
@@ -32,7 +35,7 @@ public class Dokument extends TextElement {
 				}
 			}
 
-			laenge += a.length() + 1;
+			laenge += abs[i].length() + 1;
 		}
 	}
 

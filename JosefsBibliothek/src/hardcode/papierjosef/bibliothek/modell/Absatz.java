@@ -14,8 +14,8 @@ public class Absatz extends TextElement {
 	private boolean ignorieren;
 	private Map<Wortart, Integer> anzahlWortarten; // KOMMENTAR
 	
-	public Absatz(String text, long start) {
-		super(text, start);
+	public Absatz(String text, long start, long ende) {
+		super(text, start, ende);
 		
 		String tempText = ersetzeKlammern(text); // FIXME
 		saetze = new ArrayList<Satz>();
@@ -80,10 +80,5 @@ public class Absatz extends TextElement {
 		}
 
 		return temp.toString();
-	}
-	
-	@Override
-	public long getEnde() {
-		return super.getEnde() + 1; //FIXME
 	}
 }

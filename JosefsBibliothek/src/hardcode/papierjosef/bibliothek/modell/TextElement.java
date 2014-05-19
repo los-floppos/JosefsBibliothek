@@ -17,6 +17,13 @@ public class TextElement {
 		eigenschaften = new HashMap<String, String>();		
 	}
 	
+	public TextElement(String text, long start, long ende) {
+		this.text = text;
+		this.start = start;
+		this.ende = ende;
+		eigenschaften = new HashMap<String, String>();		
+	}
+	
 	public long getStart() {
 		return start;
 	}
