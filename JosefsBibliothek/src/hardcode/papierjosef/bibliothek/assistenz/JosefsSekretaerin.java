@@ -11,40 +11,41 @@ import hardcode.papierjosef.bibliothek.modell.Wort;
 import hardcode.papierjosef.bibliothek.statistik.GrundlegendeStatistik;
 
 public class JosefsSekretaerin {
-	Dokument dokument;
+	private Dokument dokument;
 
-	public JosefsSekretaerin(String text, Sprache sprache) throws InvalidFormatException, IOException{
+	public Dokument getDokument() {
+		return dokument;
+	}
+
+	public JosefsSekretaerin(String text, Sprache sprache)
+			throws InvalidFormatException, IOException {
 		OpenNlpSekretaerin.setInstanz(new OpenNlpSekretaerin(sprache));
 		dokument = new Dokument(text);
 	}
 
-	public GrundlegendeStatistik errechneStatistik(){
-		GrundlegendeStatistik stat=new GrundlegendeStatistik();
+	public GrundlegendeStatistik errechneStatistik() {
+		GrundlegendeStatistik stat = new GrundlegendeStatistik();
 		stat.errechne(dokument);
 		return stat;
-	}
-
-	public Dokument getDokument() {
-		return dokument;
 	}
 
 	public void setDokument(Dokument dokument) {
 		this.dokument = dokument;
 	}
 
-	public String ausgebeDokument(){
-		String str = ""; //TODO
-		
-		for(Absatz absatz : dokument.getAbsaetze()) {
-			for(Satz satz : absatz.getSaetze()) {
-				str+="{"; 
-				for(Wort wort : satz.getWoerter()) {
-					str+= wort.getWort() + "/" + wort.getWortart() + " ";
+	public String ausgebeDokument() {
+		String str = ""; // TODO
+
+		for (Absatz absatz : dokument.getAbsaetze()) {
+			for (Satz satz : absatz.getSaetze()) {
+				str += "{";
+				for (Wort wort : satz.getWoerter()) {
+					str += wort.getWort() + "/" + wort.getWortart() + " ";
 				}
-				str+="}, ";
+				str += "}, ";
 			}
-			str+="\n";
+			str += "\n";
 		}
-		return str;			
+		return str;
 	}
 }
