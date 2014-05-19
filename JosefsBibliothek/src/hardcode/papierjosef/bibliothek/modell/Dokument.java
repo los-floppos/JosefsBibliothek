@@ -1,24 +1,24 @@
 package hardcode.papierjosef.bibliothek.modell;
 
-import hardcode.papierjosef.bibliothek.assistenz.Eigenschaft;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Dokument {
+public class Dokument extends TextElement {
 	private List<Absatz> absaetze;
 	private Map<Wortart, Integer> anzahlWortarten;
 
 	public Dokument(String text) {
+		super(text, 0);
+		
 		absaetze = new ArrayList<Absatz>();
 		anzahlWortarten = new HashMap<Wortart, Integer>();
 
 		long laenge = 0;
 
 		for (String a : text.split("\\n")) {
-			Absatz absatz = new Absatz(a, laenge, laenge + a.length() + 1);
+			Absatz absatz = new Absatz(a, laenge);
 
 			absaetze.add(absatz);
 

@@ -9,15 +9,10 @@ import java.util.Map;
 
 import opennlp.tools.util.Span;
 
-public class Satz {
+public class Satz extends TextElement {
 
 	private List<Wort> woerter;
 	private Map<Wortart, Integer> anzahlWortarten;
-	private Map<String, String> eigenschaften;
-	
-	//Absolute Position (relativ zum Dokument ;)
-	private long start;
-	private long ende;
 	
 	/**
 	 * 
@@ -25,11 +20,9 @@ public class Satz {
 	 * @param tempText
 	 */
 	public Satz(String text, String tempText, long start, long ende) {
-		this.start = start;
-		this.ende = ende;
+		super(text, start);
 		
 		anzahlWortarten = new HashMap<Wortart, Integer>();
-		eigenschaften = new HashMap<String, String>();
 		woerter = new ArrayList<Wort>();
 		
 		
@@ -75,14 +68,6 @@ public class Satz {
 		}
 	}
 	
-	public long getStart() {
-		return start;
-	}
-
-	public long getEnde() {
-		return ende;
-	}
-
 	public List<Wort> getWoerter() {
 		return woerter;
 	}
@@ -97,13 +82,5 @@ public class Satz {
 
 	public void setAnzahlWortarten(Map<Wortart, Integer> anzahlWortarten) {
 		this.anzahlWortarten = anzahlWortarten;
-	}
-
-	public Map<String, String> getEigenschaften() {
-		return eigenschaften;
-	}
-
-	public void setEigenschaften(Map<String, String> eigenschaften) {
-		this.eigenschaften = eigenschaften;
 	}
 }

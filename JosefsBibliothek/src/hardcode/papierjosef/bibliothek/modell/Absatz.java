@@ -9,23 +9,17 @@ import java.util.Map;
 
 import opennlp.tools.util.Span;
 
-public class Absatz {
+public class Absatz extends TextElement {
 	private List<Satz> saetze;
 	private boolean ignorieren;
 	private Map<Wortart, Integer> anzahlWortarten; // KOMMENTAR
-	private Map<String, String> eigenschaften;
 	
-	//Absolute Position (relativ zum Dokument ;)
-	private long start;
-	private long ende;
-	
-	public Absatz(String text, long start, long ende) {
+	public Absatz(String text, long start) {
+		super(text, start);
+		
 		String tempText = ersetzeKlammern(text); // FIXME
 		saetze = new ArrayList<Satz>();
 		anzahlWortarten = new HashMap<Wortart, Integer>();
-		eigenschaften = new HashMap<String, String>();
-		this.start = start;
-		this.ende = ende;
 		
 		long laenge = start;
 		
@@ -48,14 +42,6 @@ public class Absatz {
 		}
 	}
 	
-	public long getStart() {
-		return start;
-	}
-
-	public long getEnde() {
-		return ende;
-	}
-
 	public List<Satz> getSaetze() {
 		return saetze;
 	}
@@ -78,14 +64,6 @@ public class Absatz {
 
 	public void setAnzahlWortarten(Map<Wortart, Integer> anzahlWortarten) {
 		this.anzahlWortarten = anzahlWortarten;
-	}
-
-	public Map<String, String> getEigenschaften() {
-		return eigenschaften;
-	}
-
-	public void setEigenschaften(Map<String, String> eigenschaften) {
-		this.eigenschaften = eigenschaften;
 	}
 
 	public static String ersetzeKlammern(String text) {
