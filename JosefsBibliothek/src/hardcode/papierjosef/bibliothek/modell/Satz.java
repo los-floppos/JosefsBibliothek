@@ -14,40 +14,24 @@ public class Satz {
 	private List<Wort> woerter;
 	private Map<Wortart, Integer> anzahlWortarten;
 	private Map<String, String> eigenschaften;
-
-	public List<Wort> getWoerter() {
-		return woerter;
-	}
-
-	public void setWoerter(List<Wort> woerter) {
-		this.woerter = woerter;
-	}
-
-	public Map<Wortart, Integer> getAnzahlWortarten() {
-		return anzahlWortarten;
-	}
-
-	public void setAnzahlWortarten(Map<Wortart, Integer> anzahlWortarten) {
-		this.anzahlWortarten = anzahlWortarten;
-	}
-
-	public Map<String, String> getEigenschaften() {
-		return eigenschaften;
-	}
-
-	public void setEigenschaften(Map<String, String> eigenschaften) {
-		this.eigenschaften = eigenschaften;
-	}
-
+	
+	//Absolute Position (relativ zum Dokument ;)
+	private long start;
+	private long ende;
+	
 	/**
 	 * 
 	 * @param text
 	 * @param tempText
 	 */
-	public Satz(String text, String tempText) {
+	public Satz(String text, String tempText, long start, long ende) {
+		this.start = start;
+		this.ende = ende;
+		
 		anzahlWortarten = new HashMap<Wortart, Integer>();
 		eigenschaften = new HashMap<String, String>();
 		woerter = new ArrayList<Wort>();
+		
 		
 		//Zerstueckeln in Wortspannen/intervalle
 		Span[] pos = OpenNlpSekretaerin.getInstanz().getTokenizer()
@@ -89,5 +73,37 @@ public class Satz {
 			woerter.add(new Wort(tokens.get(i), wortart, pos[i].getStart(), pos[i].getEnd()));
 
 		}
+	}
+	
+	public long getStart() {
+		return start;
+	}
+
+	public long getEnde() {
+		return ende;
+	}
+
+	public List<Wort> getWoerter() {
+		return woerter;
+	}
+
+	public void setWoerter(List<Wort> woerter) {
+		this.woerter = woerter;
+	}
+
+	public Map<Wortart, Integer> getAnzahlWortarten() {
+		return anzahlWortarten;
+	}
+
+	public void setAnzahlWortarten(Map<Wortart, Integer> anzahlWortarten) {
+		this.anzahlWortarten = anzahlWortarten;
+	}
+
+	public Map<String, String> getEigenschaften() {
+		return eigenschaften;
+	}
+
+	public void setEigenschaften(Map<String, String> eigenschaften) {
+		this.eigenschaften = eigenschaften;
 	}
 }
