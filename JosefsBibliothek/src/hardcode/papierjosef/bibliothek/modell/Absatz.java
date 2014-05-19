@@ -14,6 +14,45 @@ public class Absatz {
 	private boolean ignorieren;
 	private Map<Wortart, Integer> anzahlWortarten; // KOMMENTAR
 	private Map<String, String> eigenschaften;
+	
+	//Absolute Position (relativ zum Dokument ;)
+	private long start;
+	private long ende;
+	
+	public Absatz(String text, long start, long ende) {
+		String tempText = ersetzeKlammern(text); // FIXME
+		saetze = new ArrayList<Satz>();
+		anzahlWortarten = new HashMap<Wortart, Integer>();
+		eigenschaften = new HashMap<String, String>();
+		
+		long laenge = start;
+		
+		for (Span s : OpenNlpSekretaerin.getInstanz().getSentenceDetector().sentPosDetect(tempText)) {
+
+			Satz satz = new Satz((String) s.getCoveredText(text), (String) s.getCoveredText(tempText), laenge, laenge + text.length() + 1); //TODO funktioniert das so?
+			saetze.add(satz);
+			
+			laenge += text.length() + 1;			
+			
+			for (Wortart w : satz.getAnzahlWortarten().keySet()) {
+				Integer anzahl = anzahlWortarten.get(w);
+				if (anzahl == null) {
+					anzahlWortarten.put(w, satz.getAnzahlWortarten().get(w));
+				} else {
+					anzahlWortarten.put(w, anzahl
+							+ satz.getAnzahlWortarten().get(w));
+				}
+			}
+		}
+	}
+	
+	public long getStart() {
+		return start;
+	}
+
+	public long getEnde() {
+		return ende;
+	}
 
 	public List<Satz> getSaetze() {
 		return saetze;
@@ -45,30 +84,6 @@ public class Absatz {
 
 	public void setEigenschaften(Map<String, String> eigenschaften) {
 		this.eigenschaften = eigenschaften;
-	}
-
-	public Absatz(String text) {
-		String tempText = ersetzeKlammern(text); // FIXME
-		saetze = new ArrayList<Satz>();
-		anzahlWortarten = new HashMap<Wortart, Integer>();
-		eigenschaften = new HashMap<String, String>();
-		for (Span s : OpenNlpSekretaerin.getInstanz().getSentenceDetector()
-				.sentPosDetect(tempText)) {
-
-			Satz satz = new Satz((String) s.getCoveredText(text),
-					(String) s.getCoveredText(tempText));
-			saetze.add(satz);
-
-			for (Wortart w : satz.getAnzahlWortarten().keySet()) {
-				Integer anzahl = anzahlWortarten.get(w);
-				if (anzahl == null) {
-					anzahlWortarten.put(w, satz.getAnzahlWortarten().get(w));
-				} else {
-					anzahlWortarten.put(w, anzahl
-							+ satz.getAnzahlWortarten().get(w));
-				}
-			}
-		}
 	}
 
 	public static String ersetzeKlammern(String text) {

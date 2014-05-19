@@ -14,6 +14,74 @@ public class Satz {
 	private List<Wort> woerter;
 	private Map<Wortart, Integer> anzahlWortarten;
 	private Map<String, String> eigenschaften;
+	
+	//Absolute Position (relativ zum Dokument ;)
+	private long start;
+	private long ende;
+	
+	/**
+	 * 
+	 * @param text
+	 * @param tempText
+	 */
+	public Satz(String text, String tempText, long start, long ende) {
+		this.start = start;
+		this.ende = ende;
+		
+		anzahlWortarten = new HashMap<Wortart, Integer>();
+		eigenschaften = new HashMap<String, String>();
+		woerter = new ArrayList<Wort>();
+		
+		
+		//Zerstueckeln in Wortspannen/intervalle
+		Span[] pos = OpenNlpSekretaerin.getInstanz().getTokenizer()
+				.tokenizePos(tempText);
+		List<String> tokens = new ArrayList<String>();
+		
+		//Rueckuebersetzen in eigentliche Woerter
+		for (Span s : pos) {
+			tokens.add((String) s.getCoveredText(tempText));
+		}
+		
+		String[] tags = OpenNlpSekretaerin.getInstanz().getTagger()
+				.tag(tokens.toArray(new String[0]));
+
+		for (int i = 0; i < tokens.size(); i++) {
+			String tag = tags[i];
+			if (tag.equals("$,")) {
+				tag = "XKOMMA";
+			} else if (tag.equals("$.")) {
+				tag = "XSATZENDE";
+			} else if (tag.equals("$(")) {
+				tag = "XSONST";
+			}
+
+			if (tokens.get(i).startsWith("AA")) { //FIXME
+				tokens.set(i, (String) pos[i].getCoveredText(text)); 
+			}
+
+			//System.out.println(i + ": " + tokens.get(i) + ": " + tag);
+			Wortart wortart = Wortart.valueOf(tag);
+
+			Integer anzahl = anzahlWortarten.get(wortart);
+			if (anzahl == null) {
+				anzahlWortarten.put(wortart, 1);
+			} else {
+				anzahlWortarten.put(wortart, anzahl + 1);
+			}
+
+			woerter.add(new Wort(tokens.get(i), wortart, pos[i].getStart(), pos[i].getEnd()));
+
+		}
+	}
+	
+	public long getStart() {
+		return start;
+	}
+
+	public long getEnde() {
+		return ende;
+	}
 
 	public List<Wort> getWoerter() {
 		return woerter;
@@ -37,47 +105,5 @@ public class Satz {
 
 	public void setEigenschaften(Map<String, String> eigenschaften) {
 		this.eigenschaften = eigenschaften;
-	}
-
-	public Satz(String text, String tempText) {
-		anzahlWortarten = new HashMap<Wortart, Integer>();
-		eigenschaften = new HashMap<String, String>();
-		woerter = new ArrayList<Wort>();
-		Span[] pos = OpenNlpSekretaerin.getInstanz().getTokenizer()
-				.tokenizePos(tempText);
-		List<String> tokens = new ArrayList<String>();
-		for (Span s : pos) {
-			tokens.add((String) s.getCoveredText(tempText));
-		}
-		String[] tags = OpenNlpSekretaerin.getInstanz().getTagger()
-				.tag(tokens.toArray(new String[0]));
-
-		for (int i = 0; i < tokens.size(); i++) {
-			String tag = tags[i];
-			if (tag.equals("$,")) {
-				tag = "XKOMMA";
-			} else if (tag.equals("$.")) {
-				tag = "XSATZENDE";
-			} else if (tag.equals("$(")) {
-				tag = "XSONST";
-			}
-
-			if (tokens.get(i).startsWith("AA")) { 
-				tokens.set(i, (String) pos[i].getCoveredText(text)); 
-			}
-
-			System.out.println(i + ": " + tokens.get(i) + ": " + tag);
-			Wortart wortart = Wortart.valueOf(tag);
-
-			Integer anzahl = anzahlWortarten.get(wortart);
-			if (anzahl == null) {
-				anzahlWortarten.put(wortart, 1);
-			} else {
-				anzahlWortarten.put(wortart, anzahl + 1);
-			}
-
-			woerter.add(new Wort(tokens.get(i), wortart));
-
-		}
 	}
 }
