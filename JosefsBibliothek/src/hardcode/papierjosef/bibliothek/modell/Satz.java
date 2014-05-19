@@ -1,5 +1,7 @@
 package hardcode.papierjosef.bibliothek.modell;
 
+import hardcode.papierjosef.bibliothek.assistenz.OpenNlpSekretaerin;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -16,29 +16,41 @@ import opennlp.tools.tokenize.TokenizerModel;
 import opennlp.tools.util.InvalidFormatException;
 
 public class OpenNlpSekretaerin {
-
-	private static OpenNlpSekretaerin instanz;
-	
 	private SentenceDetectorME sentenceDetector;
 	private Tokenizer tokenizer;
 	private POSTaggerME tagger;
 	
 	
-
-	public static void setInstanz(OpenNlpSekretaerin instanz) {
-		OpenNlpSekretaerin.instanz = instanz;
-	}
-
 	public SentenceDetectorME getSentenceDetector() {
 		return sentenceDetector;
+	}
+
+	public void setSentenceDetector(SentenceDetectorME sentenceDetector) {
+		this.sentenceDetector = sentenceDetector;
 	}
 
 	public Tokenizer getTokenizer() {
 		return tokenizer;
 	}
 
+	public void setTokenizer(Tokenizer tokenizer) {
+		this.tokenizer = tokenizer;
+	}
+
 	public POSTaggerME getTagger() {
 		return tagger;
+	}
+
+	public void setTagger(POSTaggerME tagger) {
+		this.tagger = tagger;
+	}
+
+	private static OpenNlpSekretaerin instanz;
+	
+	
+
+	public static void setInstanz(OpenNlpSekretaerin instanz) {
+		OpenNlpSekretaerin.instanz = instanz;
 	}
 
 	public static OpenNlpSekretaerin getInstanz(){
