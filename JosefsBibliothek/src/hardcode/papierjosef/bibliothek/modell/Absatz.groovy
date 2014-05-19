@@ -13,8 +13,6 @@ class Absatz {
 			Satz satz=new Satz(s);
 			saetze.add(satz);
 			
-			println(satz.anzahlWortarten.keySet())
-			
 			for(Wortart w: satz.anzahlWortarten.keySet()){
 				Integer anzahl =  anzahlWortarten.getAt(w);
 				if (anzahl == null) {
