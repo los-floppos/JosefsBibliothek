@@ -10,7 +10,7 @@ public abstract class Regel<T extends TextElement> {
 		this.t = t;
 	}
 
-	public TextElement getT() {
+	public T getT() {
 		return t;
 	}
 
