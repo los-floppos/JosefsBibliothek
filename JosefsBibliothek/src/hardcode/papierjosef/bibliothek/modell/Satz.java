@@ -42,7 +42,7 @@ public class Satz {
 	public Satz(String text, String tempText) {
 		anzahlWortarten = new HashMap<Wortart, Integer>();
 		eigenschaften = new HashMap<String, String>();
-		woerter=new ArrayList<Wort>();
+		woerter = new ArrayList<Wort>();
 		Span[] pos = OpenNlpSekretaerin.getInstanz().getTokenizer()
 				.tokenizePos(tempText);
 		List<String> tokens = new ArrayList<String>();
@@ -52,7 +52,7 @@ public class Satz {
 		String[] tags = OpenNlpSekretaerin.getInstanz().getTagger()
 				.tag(tokens.toArray(new String[0]));
 
-		for (int i = 0; i < tokens.size() - 1; i++) {
+		for (int i = 0; i < tokens.size(); i++) {
 			String tag = tags[i];
 			if (tag.equals("$,")) {
 				tag = "XKOMMA";
@@ -62,9 +62,9 @@ public class Satz {
 				tag = "XSONST";
 			}
 
-			if (tokens.get(i).startsWith("AA") && tokens.get(i).endsWith("AA")) { 	//FIXME
-				tokens.set(i, (String) pos[i].getCoveredText(text));				//FIXME
-			}																		//FIXME
+			if (tokens.get(i).startsWith("AA")) { 
+				tokens.set(i, (String) pos[i].getCoveredText(text)); 
+			}
 
 			System.out.println(i + ": " + tokens.get(i) + ": " + tag);
 			Wortart wortart = Wortart.valueOf(tag);
