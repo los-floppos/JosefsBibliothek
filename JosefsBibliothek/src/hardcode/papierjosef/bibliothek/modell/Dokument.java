@@ -18,7 +18,7 @@ public class Dokument {
 		long laenge = 0;
 		
 		for (String a : text.split("\\n")) {
-			Absatz absatz = new Absatz(a, laenge, laenge + text.length() + 1); //TODO: funktioniert laenge + text?
+			Absatz absatz = new Absatz(a, laenge, text.length() + 1); //TODO: funktioniert laenge + text?
 
 			absaetze.add(absatz);
 

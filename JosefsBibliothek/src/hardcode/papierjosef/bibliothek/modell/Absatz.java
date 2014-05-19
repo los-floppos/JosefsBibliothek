@@ -24,6 +24,8 @@ public class Absatz {
 		saetze = new ArrayList<Satz>();
 		anzahlWortarten = new HashMap<Wortart, Integer>();
 		eigenschaften = new HashMap<String, String>();
+		this.start = start;
+		this.ende = ende;
 		
 		long laenge = start;
 		
