@@ -1,11 +1,14 @@
-package hardcode.papierjosef.bibliothek.modell
+package hardcode.papierjosef.bibliothek.modell;
 
-class Dokument {
-	def absaetze = [];
-	def anzahlWortarten = [:];
+import java.util.List;
+import java.util.Map;
+
+public class Dokument {
+	List<Absatz> absaetze;
+	Map<String, String> anzahlWortarten;
 
 	public Dokument(String text) {
-		for (a in text.split("\\n")) {
+		for (String a : text.split("\\n")) {
 			Absatz absatz = new Absatz(a);
 			
 			absaetze.add(absatz);
