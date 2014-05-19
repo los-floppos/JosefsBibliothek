@@ -81,4 +81,9 @@ public class Absatz extends TextElement {
 
 		return temp.toString();
 	}
+	
+	@Override
+	public long getEnde() {
+		return super.getEnde() + 1; //FIXME
+	}
 }
