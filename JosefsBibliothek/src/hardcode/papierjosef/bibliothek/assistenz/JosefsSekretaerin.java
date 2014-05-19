@@ -24,6 +24,14 @@ public class JosefsSekretaerin {
 		return stat;
 	}
 
+	public Dokument getDokument() {
+		return dokument;
+	}
+
+	public void setDokument(Dokument dokument) {
+		this.dokument = dokument;
+	}
+
 	public String ausgebeDokument(){
 		String str = ""; //TODO
 		
