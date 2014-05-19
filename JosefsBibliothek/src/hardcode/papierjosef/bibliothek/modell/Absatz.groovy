@@ -3,7 +3,7 @@ package hardcode.papierjosef.bibliothek.modell
 import hardcode.papierjosef.bibliothek.assistenz.OpenNlpSekretaerin
 
 class Absatz {
-	def saetze = [];
+	def saetze = []; 
 	boolean ignorieren;
 
 	def anzahlWortarten = [:];
