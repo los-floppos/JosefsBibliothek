@@ -1,5 +1,6 @@
 package hardcode.papierjosef.bibliothek.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import hardcode.papierjosef.bibliothek.assistenz.JosefsSekretaerin;
 import hardcode.papierjosef.bibliothek.modell.Absatz;
@@ -17,9 +18,16 @@ public class DokumentenTest {
 		try {
 			JosefsSekretaerin sekr = new JosefsSekretaerin(testtext,
 					new DeutscheSprache());
-			List<Absatz> absaetze=sekr.getDokument().getAbsaetze();
-			//absaetze.get(0)
-			//"Das ist ein Test.\n".length;
+			List<Absatz> absaetze = sekr.getDokument().getAbsaetze();
+			assertEquals(absaetze.get(0).getStart(), 0);
+			assertEquals(
+					absaetze.get(0).getEnde(),
+					"Das ist ein Test.\n".length());
+			assertEquals(absaetze.get(1).getStart(),
+					"Das ist ein Test.\n".length());
+			assertEquals(
+					absaetze.get(1).getEnde() - absaetze.get(1).getStart(),
+					"Und das der dazugehörige Text.".length());
 		} catch (Exception e) {
 			fail("Exception found");
 		}

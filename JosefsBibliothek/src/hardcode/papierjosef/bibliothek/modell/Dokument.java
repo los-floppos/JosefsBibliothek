@@ -16,9 +16,9 @@ public class Dokument {
 		anzahlWortarten = new HashMap<Wortart, Integer>();
 
 		long laenge = 0;
-		
+
 		for (String a : text.split("\\n")) {
-			Absatz absatz = new Absatz(a, laenge, text.length() + 1); //TODO: funktioniert laenge + text?
+			Absatz absatz = new Absatz(a, laenge, laenge + a.length() + 1);
 
 			absaetze.add(absatz);
 
@@ -31,9 +31,11 @@ public class Dokument {
 							+ absatz.getAnzahlWortarten().get(w));
 				}
 			}
+
+			laenge += a.length() + 1;
 		}
 	}
-	
+
 	public List<Absatz> getAbsaetze() {
 		return absaetze;
 	}
