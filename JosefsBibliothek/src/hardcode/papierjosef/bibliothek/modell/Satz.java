@@ -1,8 +1,8 @@
-package hardcode.papierjosef.bibliothek.modell
+package hardcode.papierjosef.bibliothek.modell;
 
 import hardcode.papierjosef.bibliothek.assistenz.OpenNlpSekretaerin
 
-class Satz {
+public class Satz {
 	
 	def woerter = [];
 	
