@@ -1,35 +1,39 @@
 package hardcode.papierjosef.bibliothek.modell;
 
-import hardcode.papierjosef.bibliothek.assistenz.OpenNlpSekretaerin
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Satz {
 	
-	def woerter = [];
+	List<Wort> woerter;
 	
-	def anzahlWortarten = [:];
+	Map<Wortart,Integer> anzahlWortarten;
 	
-	def eigenschaften = [:];
+	Map<String,String> eigenschaften;
 
 	public Satz (String text) {
+		anzahlWortarten=new HashMap<Wortart, Integer>();
+		eigenschaften=new HashMap<String,String>();
 		String[] tokens=OpenNlpSekretaerin.getInstanz().tokenizer.tokenize(text);
 		String[] tags = OpenNlpSekretaerin.getInstanz().tagger.tag(tokens);
 
-		for(i in 0..tokens.length-1){
+		for(int i=0;i<tokens.length-1;i++){
 			String tag = tags[i];
-			if(tag.equals('$,')) {
+			if(tag.equals("$,")) {
 				tag = "XKOMMA";
-			} else if (tag.equals('$.')) {
+			} else if (tag.equals("$.")) {
 				tag = "XSATZENDE";
-			} else if (tag.equals('$(')) {
+			} else if (tag.equals("$(")) {
 				tag = "XSONST";
 			}
 			
-			println(i + ": " + tokens[i] + ": " + tag);
+			System.out.println(i + ": " + tokens[i] + ": " + tag);
 			Wortart wortart = Wortart.valueOf(tag);
 			
-			Integer anzahl =  anzahlWortarten.getAt(wortart);
+			Integer anzahl =  anzahlWortarten.get(wortart);
 			if (anzahl == null) {
-				anzahlWortarten.put(wortart, 1)
+				anzahlWortarten.put(wortart, 1);
 			} else {
 				anzahlWortarten.put(wortart, anzahl + 1);
 			}
