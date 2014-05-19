@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import hardcode.papierjosef.bibliothek.assistenz.OpenNlpSekretaerin;
-
 public class Satz {
 	
 	private List<Wort> woerter;

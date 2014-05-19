@@ -11,7 +11,11 @@ import hardcode.papierjosef.bibliothek.modell.Wort;
 import hardcode.papierjosef.bibliothek.statistik.GrundlegendeStatistik;
 
 public class JosefsSekretaerin {
-	Dokument dokument;
+	private Dokument dokument;
+	
+	public Dokument getDokument() {
+		return dokument;
+	}
 
 	public JosefsSekretaerin(String text, Sprache sprache) throws InvalidFormatException, IOException{
 		OpenNlpSekretaerin.setInstanz(new OpenNlpSekretaerin(sprache));
