@@ -1,13 +1,20 @@
-package hardcode.papierjosef.bibliothek.assistenz
+package hardcode.papierjosef.bibliothek.assistenz;
 
-import hardcode.papierjosef.bibliothek.modell.Sprache
-import opennlp.tools.postag.POSModel
-import opennlp.tools.postag.POSTaggerME
-import opennlp.tools.sentdetect.SentenceDetectorME
-import opennlp.tools.sentdetect.SentenceModel
-import opennlp.tools.tokenize.Tokenizer
-import opennlp.tools.tokenize.TokenizerME
-import opennlp.tools.tokenize.TokenizerModel
+import hardcode.papierjosef.bibliothek.modell.Sprache;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import opennlp.tools.postag.POSModel;
+import opennlp.tools.postag.POSTaggerME;
+import opennlp.tools.sentdetect.SentenceDetectorME;
+import opennlp.tools.sentdetect.SentenceModel;
+import opennlp.tools.tokenize.Tokenizer;
+import opennlp.tools.tokenize.TokenizerME;
+import opennlp.tools.tokenize.TokenizerModel;
+import opennlp.tools.util.InvalidFormatException;
 
 class OpenNlpSekretaerin {
 
@@ -23,9 +30,9 @@ class OpenNlpSekretaerin {
 		return instanz;
 	}
 
-	OpenNlpSekretaerin(Sprache sprache){
+	OpenNlpSekretaerin(Sprache sprache) throws InvalidFormatException, IOException{
 		String pfad="opennlpmodels/"+sprache.getSprache();
-		InputStream sentModelIn = new FileInputStream(pfad + "-sent.bin");
+		FileInputStream sentModelIn = new FileInputStream(pfad + "-sent.bin");
 		InputStream tokenModelIn = new FileInputStream(pfad + "-token.bin");
 		InputStream posModelIn = new FileInputStream(pfad + "-pos-maxent.bin");
 
