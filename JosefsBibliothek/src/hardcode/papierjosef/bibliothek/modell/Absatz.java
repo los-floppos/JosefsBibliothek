@@ -7,9 +7,9 @@ public class Absatz {
 	List<Satz> saetze; 
 	boolean ignorieren;
 
-	Map anzahlWortarten; //KOMMENTAR
+	Map<Wortart,Integer> anzahlWortarten; //KOMMENTAR
 	
-	Map eigenschaften;
+	Map<String,String> eigenschaften;
 
 	public Absatz(String text) {
 		String tempText = ersetzeKlammern(text);
@@ -19,9 +19,9 @@ public class Absatz {
 			saetze.add(satz);
 			
 			for(Wortart w: satz.anzahlWortarten.keySet()){
-				Integer anzahl =  anzahlWortarten.getAt(w);
+				Integer anzahl =  anzahlWortarten.get(w);
 				if (anzahl == null) {
-					anzahlWortarten.put(w, satz.anzahlWortarten.get(w))
+					anzahlWortarten.put(w, satz.anzahlWortarten.get(w));
 				} else {
 					anzahlWortarten.put(w, anzahl + satz.anzahlWortarten.get(w));
 				}
