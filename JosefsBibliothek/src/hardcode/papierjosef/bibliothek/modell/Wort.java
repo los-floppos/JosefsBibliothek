@@ -6,10 +6,27 @@ import java.util.Map;
 import hardcode.papierjosef.bibliothek.assistenz.Eigenschaft;
 
 public class Wort {
-	String wort;
-	
+	private String wort;
 	private Map<String, String> eigenschaften;
 	
+	
+	
+	public String getWort() {
+		return wort;
+	}
+
+	public void setWort(String wort) {
+		this.wort = wort;
+	}
+
+	public Map<String, String> getEigenschaften() {
+		return eigenschaften;
+	}
+
+	public void setEigenschaften(Map<String, String> eigenschaften) {
+		this.eigenschaften = eigenschaften;
+	}
+
 	public Wort(String token, Wortart wortart){
 		eigenschaften = new HashMap<String, String>();
 		

@@ -4,8 +4,24 @@ import java.util.List;
 import java.util.Map;
 
 public class Dokument {
-	List<Absatz> absaetze;
-	Map<String, String> anzahlWortarten;
+	private List<Absatz> absaetze;
+	private Map<Wortart, Integer> anzahlWortarten;
+
+	public List<Absatz> getAbsaetze() {
+		return absaetze;
+	}
+
+	public void setAbsaetze(List<Absatz> absaetze) {
+		this.absaetze = absaetze;
+	}
+
+	public Map<Wortart, Integer> getAnzahlWortarten() {
+		return anzahlWortarten;
+	}
+
+	public void setAnzahlWortarten(Map<Wortart, Integer> anzahlWortarten) {
+		this.anzahlWortarten = anzahlWortarten;
+	}
 
 	public Dokument(String text) {
 		for (String a : text.split("\\n")) {
@@ -13,12 +29,12 @@ public class Dokument {
 			
 			absaetze.add(absatz);
 			
-			for(Wortart w: absatz.anzahlWortarten.keySet()){
-				Integer anzahl =  anzahlWortarten.getAt(w);
+			for(Wortart w: absatz.getAnzahlWortarten().keySet()){
+				Integer anzahl =  anzahlWortarten.get(w);
 				if (anzahl == null) {
-					anzahlWortarten.put(w, absatz.anzahlWortarten.get(w))
+					anzahlWortarten.put(w, absatz.getAnzahlWortarten().get(w));
 				} else {
-					anzahlWortarten.put(w, anzahl + absatz.anzahlWortarten.get(w));
+					anzahlWortarten.put(w, anzahl + absatz.getAnzahlWortarten().get(w));
 				}
 			}
 		}

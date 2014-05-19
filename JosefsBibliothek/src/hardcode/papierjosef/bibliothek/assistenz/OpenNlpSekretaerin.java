@@ -3,7 +3,6 @@ package hardcode.papierjosef.bibliothek.assistenz;
 import hardcode.papierjosef.bibliothek.modell.Sprache;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -16,13 +15,31 @@ import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 import opennlp.tools.util.InvalidFormatException;
 
-class OpenNlpSekretaerin {
+public class OpenNlpSekretaerin {
 
-	SentenceDetectorME sentenceDetector;
-	Tokenizer tokenizer;
-	POSTaggerME tagger;
+	private static OpenNlpSekretaerin instanz;
+	
+	private SentenceDetectorME sentenceDetector;
+	private Tokenizer tokenizer;
+	private POSTaggerME tagger;
+	
+	
 
-	static OpenNlpSekretaerin instanz;
+	public static void setInstanz(OpenNlpSekretaerin instanz) {
+		OpenNlpSekretaerin.instanz = instanz;
+	}
+
+	public SentenceDetectorME getSentenceDetector() {
+		return sentenceDetector;
+	}
+
+	public Tokenizer getTokenizer() {
+		return tokenizer;
+	}
+
+	public POSTaggerME getTagger() {
+		return tagger;
+	}
 
 	public static OpenNlpSekretaerin getInstanz(){
 		if(instanz==null)
