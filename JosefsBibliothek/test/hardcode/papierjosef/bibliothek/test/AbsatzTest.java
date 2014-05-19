@@ -25,13 +25,12 @@ public class AbsatzTest {
 
 	@Test
 	public void tokensTest() {
-		String text = "Das ist ein (Test).";
+		String text = "Das ist ein (schiweriger Test).";
 		JosefsSekretaerin sekr;
 		try {
 			sekr = new JosefsSekretaerin(text, new DeutscheSprache());
 			for (Wort w : sekr.getDokument().getAbsaetze().get(0).getSaetze()
 					.get(0).getWoerter()) {
-				System.out.println(w.getWort() + ":" + w.getWortart());
 			}
 		} catch (InvalidFormatException e) {
 			e.printStackTrace();
