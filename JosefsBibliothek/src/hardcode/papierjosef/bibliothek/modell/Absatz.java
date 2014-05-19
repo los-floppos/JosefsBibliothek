@@ -1,5 +1,7 @@
 package hardcode.papierjosef.bibliothek.modell;
 
+import hardcode.papierjosef.bibliothek.assistenz.OpenNlpSekretaerin;
+
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +16,7 @@ public class Absatz {
 	public Absatz(String text) {
 		String tempText = ersetzeKlammern(text);
 	
-		for(String s: OpenNlpSekretaerin.getInstanz().sentenceDetector.sentDetect(tempText)){
+		for(String s: OpenNlpSekretaerin.getInstanz().getSentenceDetector().sentDetect(tempText)){
 			Satz satz=new Satz(s);
 			saetze.add(satz);
 			

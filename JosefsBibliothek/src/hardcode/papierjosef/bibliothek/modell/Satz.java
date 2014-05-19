@@ -1,5 +1,7 @@
 package hardcode.papierjosef.bibliothek.modell;
 
+import hardcode.papierjosef.bibliothek.assistenz.OpenNlpSekretaerin;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +17,8 @@ public class Satz {
 	public Satz (String text) {
 		anzahlWortarten=new HashMap<Wortart, Integer>();
 		eigenschaften=new HashMap<String,String>();
-		String[] tokens=OpenNlpSekretaerin.getInstanz().tokenizer.tokenize(text);
-		String[] tags = OpenNlpSekretaerin.getInstanz().tagger.tag(tokens);
+		String[] tokens=OpenNlpSekretaerin.getInstanz().getTokenizer().tokenize(text);
+		String[] tags = OpenNlpSekretaerin.getInstanz().getTagger().tag(tokens);
 
 		for(int i=0;i<tokens.length-1;i++){
 			String tag = tags[i];

@@ -16,7 +16,31 @@ import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 import opennlp.tools.util.InvalidFormatException;
 
-class OpenNlpSekretaerin {
+public class OpenNlpSekretaerin {
+
+	public SentenceDetectorME getSentenceDetector() {
+		return sentenceDetector;
+	}
+
+	public void setSentenceDetector(SentenceDetectorME sentenceDetector) {
+		this.sentenceDetector = sentenceDetector;
+	}
+
+	public Tokenizer getTokenizer() {
+		return tokenizer;
+	}
+
+	public void setTokenizer(Tokenizer tokenizer) {
+		this.tokenizer = tokenizer;
+	}
+
+	public POSTaggerME getTagger() {
+		return tagger;
+	}
+
+	public void setTagger(POSTaggerME tagger) {
+		this.tagger = tagger;
+	}
 
 	SentenceDetectorME sentenceDetector;
 	Tokenizer tokenizer;
