@@ -3,7 +3,7 @@ package hardcode.papierjosef.bibliothek.modell;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TextElement {
+public abstract class TextElement {
 	
 	private long start;
 	private long ende;
