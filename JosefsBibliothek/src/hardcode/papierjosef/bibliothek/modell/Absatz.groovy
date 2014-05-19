@@ -7,6 +7,8 @@ class Absatz {
 	boolean ignorieren;
 
 	def anzahlWortarten = [:];
+	
+	def eigenschaften = [:];
 
 	public Absatz(String text) {
 		for(s in OpenNlpSekretaerin.getInstanz().sentenceDetector.sentDetect(text)){

@@ -7,6 +7,8 @@ class Satz {
 	def woerter = [];
 	
 	def anzahlWortarten = [:];
+	
+	def eigenschaften = [:];
 
 	public Satz (String text) {
 		String[] tokens=OpenNlpSekretaerin.getInstanz().tokenizer.tokenize(text);
