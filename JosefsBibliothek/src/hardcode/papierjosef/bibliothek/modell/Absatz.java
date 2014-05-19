@@ -7,7 +7,7 @@ public class Absatz {
 	List<Satz> saetze; 
 	boolean ignorieren;
 
-	Map anzahlWortarten;
+	Map anzahlWortarten; //KOMMENTAR
 	
 	Map eigenschaften;
 
