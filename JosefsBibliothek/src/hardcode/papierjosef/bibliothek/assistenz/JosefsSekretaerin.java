@@ -8,6 +8,7 @@ import hardcode.papierjosef.bibliothek.modell.Dokument;
 import hardcode.papierjosef.bibliothek.modell.Satz;
 import hardcode.papierjosef.bibliothek.modell.Sprache;
 import hardcode.papierjosef.bibliothek.modell.Wort;
+import hardcode.papierjosef.bibliothek.statistik.EigenschaftsStatistik;
 import hardcode.papierjosef.bibliothek.statistik.GrundlegendeStatistik;
 
 public class JosefsSekretaerin {
@@ -23,8 +24,14 @@ public class JosefsSekretaerin {
 		dokument = new Dokument(text);
 	}
 
-	public GrundlegendeStatistik errechneStatistik() {
+	public GrundlegendeStatistik errechneGrundlegendeStatistik() { //TODO
 		GrundlegendeStatistik stat = new GrundlegendeStatistik();
+		stat.errechne(dokument);
+		return stat;
+	}
+	
+	public EigenschaftsStatistik errechneEigenschaftsStatistik() { //TODO
+		EigenschaftsStatistik stat = new EigenschaftsStatistik();
 		stat.errechne(dokument);
 		return stat;
 	}

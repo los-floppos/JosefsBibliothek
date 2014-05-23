@@ -2,6 +2,7 @@ package hardcode.papierjosef.bibliothek.modell;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class TextElement {
 	
@@ -32,6 +33,9 @@ public abstract class TextElement {
 	}
 	public String get(Object key) {
 		return eigenschaften.get(key);
+	}
+	public Set<String> getEigenschaftenSchluessel() {
+		return eigenschaften.keySet();
 	}
 	public String put(String key, String value) {
 		return eigenschaften.put(key, value);

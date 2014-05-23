@@ -4,7 +4,7 @@ import hardcode.papierjosef.bibliothek.modell.Absatz;
 import hardcode.papierjosef.bibliothek.modell.Dokument;
 import hardcode.papierjosef.bibliothek.modell.Satz;
 
-public class GrundlegendeStatistik implements Statistik{
+public class GrundlegendeStatistik extends Statistik{
 	private int zahlDerAbsaetze;
 	private int zahlDerSaetze;
 	private int zahlDerWoerter;

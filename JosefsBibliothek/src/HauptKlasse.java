@@ -2,9 +2,13 @@ import java.io.IOException;
 
 import opennlp.tools.util.InvalidFormatException;
 import hardcode.papierjosef.bibliothek.assistenz.JosefsSekretaerin;
+import hardcode.papierjosef.bibliothek.modell.Absatz;
 import hardcode.papierjosef.bibliothek.modell.Dokument;
+import hardcode.papierjosef.bibliothek.modell.Satz;
+import hardcode.papierjosef.bibliothek.modell.Wort;
 import hardcode.papierjosef.bibliothek.modell.Wortart;
 import hardcode.papierjosef.bibliothek.sprachen.DeutscheSprache;
+import hardcode.papierjosef.bibliothek.statistik.EigenschaftsStatistik;
 import hardcode.papierjosef.bibliothek.statistik.GrundlegendeStatistik;
 
 public class HauptKlasse {
@@ -27,10 +31,31 @@ public class HauptKlasse {
 			int anzahl = d.getAnzahlWortarten().get(w);
 			System.out.print(w.toString() + ": " + anzahl + "; ");
 		}
-		System.out.println();
+
+		System.out.println("##################");
 		
-		GrundlegendeStatistik grundStat = assistenz.errechneStatistik();
+		GrundlegendeStatistik grundStat = assistenz.errechneGrundlegendeStatistik();
 		System.out.println(grundStat);
+		
+		d.put("Tolle Eigenschaft", "true");
+		d.getAbsaetze().get(0).put("Toller Satz", "true");
+		d.getAbsaetze().get(0).getSaetze().get(0).put("Schöner Satz", "true");
+		//TODO: fuer woerter!
+		
+		EigenschaftsStatistik eigenStat = assistenz.errechneEigenschaftsStatistik();
+		System.out.println(eigenStat);
+		
+		System.out.println("##################");
+		
+		for(Absatz a : d.getAbsaetze()) {
+			System.out.println("> ABSATZ");
+			for(Satz s : a.getSaetze()) {
+				System.out.println("---> SATZ");
+				for(Wort w : s.getWoerter()) {
+					System.out.println("------> " + w.getWort() + ": " + w.getWortart() + "(" + w.getStart() + ", " + w.getEnde() + ")");
+				}
+			}
+		}
 	}
 
 }
