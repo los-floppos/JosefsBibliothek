@@ -2,6 +2,7 @@ package hardcode.papierjosef.bibliothek.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.io.IOException;
 
 import hardcode.papierjosef.bibliothek.assistenz.JosefsSekretaerin;
@@ -14,6 +15,8 @@ import org.junit.Test;
 
 public class AbsatzTest {
 
+	File programmPfad = new File(System.getProperty("user.dir"));
+	
 	@Test
 	public void ersetzungsTest() {
 		assertEquals("Test AAAAAAAAAAAA, bla",
@@ -28,13 +31,13 @@ public class AbsatzTest {
 		String text = "Das ist ein (schiweriger Test).";
 		JosefsSekretaerin sekr;
 		try {
-			sekr = new JosefsSekretaerin(text, new DeutscheSprache());
+			sekr = new JosefsSekretaerin(programmPfad, text, new DeutscheSprache());
 			for (Wort w : sekr.getDokument().getAbsaetze().get(0).getSaetze()
 					.get(0).getWoerter()) {
 			}
-		} catch (InvalidFormatException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

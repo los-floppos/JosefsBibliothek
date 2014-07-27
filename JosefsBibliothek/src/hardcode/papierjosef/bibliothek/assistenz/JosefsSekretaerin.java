@@ -1,8 +1,8 @@
 package hardcode.papierjosef.bibliothek.assistenz;
 
+import java.io.File;
 import java.io.IOException;
 
-import opennlp.tools.util.InvalidFormatException;
 import hardcode.papierjosef.bibliothek.modell.Absatz;
 import hardcode.papierjosef.bibliothek.modell.Dokument;
 import hardcode.papierjosef.bibliothek.modell.Satz;
@@ -18,9 +18,8 @@ public class JosefsSekretaerin {
 		return dokument;
 	}
 
-	public JosefsSekretaerin(String text, Sprache sprache)
-			throws InvalidFormatException, IOException {
-		OpenNlpSekretaerin.setInstanz(new OpenNlpSekretaerin(sprache));
+	public JosefsSekretaerin(File programmpfad, String text, Sprache sprache) throws Exception, IOException {
+		OpenNlpSekretaerin.setInstanz(new OpenNlpSekretaerin(programmpfad, sprache));
 		dokument = new Dokument(text);
 	}
 
