@@ -1,6 +1,6 @@
 package hardcode.papierjosef.bibliothek.assistenz;
 
-import hardcode.papierjosef.bibliothek.modell.Sprache;
+import hardcode.papierjosef.bibliothek.sprachen.Sprache;
 
 import java.io.FileInputStream;
 import java.io.IOException;

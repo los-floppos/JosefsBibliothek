@@ -1,4 +1,4 @@
-package hardcode.papierjosef.bibliothek.modell;
+package hardcode.papierjosef.bibliothek.modellALT;
 
 import hardcode.papierjosef.bibliothek.assistenz.OpenNlpSekretaerin;
 

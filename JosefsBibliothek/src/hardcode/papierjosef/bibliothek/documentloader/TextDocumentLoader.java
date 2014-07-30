@@ -1,12 +1,15 @@
-package hardcode.papierjosef.bibliothek.dokumentlader;
+package hardcode.papierjosef.bibliothek.documentloader;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public abstract class DokumentLader implements IDokumentLader {
-	protected String leseDatei(File file) throws IOException {
+public abstract class TextDocumentLoader implements DocumentLoader {
+	
+	private String text;
+	
+	public void loadFile(File file) throws IOException {
 		//TODO: no such file exception
 		String text;
 	    BufferedReader br = new BufferedReader(new FileReader(file));
@@ -23,6 +26,11 @@ public abstract class DokumentLader implements IDokumentLader {
 	    } finally {
 	        br.close();
 	    }
-	    return text;
+	    
+	    this.text = text;
+	}
+	
+	public String getText() {
+		return text;
 	}
 }

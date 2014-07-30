@@ -1,7 +1,5 @@
 package hardcode.papierjosef.bibliothek.sprachen;
 
-import hardcode.papierjosef.bibliothek.modell.Sprache;
-
 public class DeutscheSprache implements Sprache {
 
 	@Override

@@ -1,4 +1,4 @@
-package hardcode.papierjosef.bibliothek.modell;
+package hardcode.papierjosef.bibliothek.modellALT;
 
 import java.util.ArrayList;
 import java.util.HashMap;

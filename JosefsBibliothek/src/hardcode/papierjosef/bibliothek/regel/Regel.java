@@ -1,6 +1,7 @@
 package hardcode.papierjosef.bibliothek.regel;
 
-import hardcode.papierjosef.bibliothek.modell.TextElement;
+import hardcode.papierjosef.model.document.TextElement;
+
 
 public abstract class Regel<T extends TextElement> {
 	

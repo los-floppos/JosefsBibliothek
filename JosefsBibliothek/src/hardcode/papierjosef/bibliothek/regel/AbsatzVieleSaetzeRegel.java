@@ -1,17 +1,18 @@
 package hardcode.papierjosef.bibliothek.regel;
 
-import hardcode.papierjosef.bibliothek.modell.Absatz;
+import hardcode.papierjosef.model.document.Paragraph;
 
-public class AbsatzVieleSaetzeRegel extends Regel<Absatz> {
+public class AbsatzVieleSaetzeRegel extends Regel<Paragraph> {
 
-	public AbsatzVieleSaetzeRegel(Absatz t) {
+	public AbsatzVieleSaetzeRegel(Paragraph t) {
 		super(t);
 	}
 
 	@Override
 	public void fuehreAus() {
-		if(getT().getSaetze().size() > 15) {
-			getT().put("LangerAbsatz", "true");
-		}
+		//TODO
+//		if(getT().getSaetze().size() > 15) {
+//			getT().put("LangerAbsatz", "true");
+//		}
 	}
 }

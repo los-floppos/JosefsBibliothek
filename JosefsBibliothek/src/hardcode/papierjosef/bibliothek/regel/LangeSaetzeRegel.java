@@ -1,16 +1,17 @@
 package hardcode.papierjosef.bibliothek.regel;
 
-import hardcode.papierjosef.bibliothek.modell.Satz;
+import hardcode.papierjosef.model.document.Sentence;
 
-public class LangeSaetzeRegel extends Regel<Satz> {
-	public LangeSaetzeRegel(Satz t) {
+public class LangeSaetzeRegel extends Regel<Sentence> {
+	public LangeSaetzeRegel(Sentence t) {
 		super(t);
 	}
 
 	@Override
 	public void fuehreAus() {
-		if (getT().getWoerter().size() > 20)
-			getT().put("LANGER_SATZ", "true");
+		//TODO
+//		if (getT().getWoerter().size() > 20)
+//			getT().put("LANGER_SATZ", "true");
 	}
 
 }

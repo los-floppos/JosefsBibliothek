@@ -3,55 +3,56 @@ package hardcode.papierjosef.bibliothek.assistenz;
 import java.io.File;
 import java.io.IOException;
 
-import hardcode.papierjosef.bibliothek.modell.Absatz;
-import hardcode.papierjosef.bibliothek.modell.Dokument;
-import hardcode.papierjosef.bibliothek.modell.Satz;
-import hardcode.papierjosef.bibliothek.modell.Sprache;
-import hardcode.papierjosef.bibliothek.modell.Wort;
+import hardcode.papierjosef.bibliothek.sprachen.Sprache;
 import hardcode.papierjosef.bibliothek.statistik.EigenschaftsStatistik;
 import hardcode.papierjosef.bibliothek.statistik.GrundlegendeStatistik;
+import hardcode.papierjosef.model.document.Document;
+import hardcode.papierjosef.model.document.Paragraph;
+import hardcode.papierjosef.model.document.Sentence;
+import hardcode.papierjosef.model.document.Word;
 
 public class JosefsSekretaerin {
-	private Dokument dokument;
+	private Document dokument;
 
-	public Dokument getDokument() {
+	public Document getDokument() {
 		return dokument;
 	}
 
 	public JosefsSekretaerin(File programmpfad, String text, Sprache sprache) throws Exception, IOException {
 		OpenNlpSekretaerin.setInstanz(new OpenNlpSekretaerin(programmpfad, sprache));
-		dokument = new Dokument(text);
+		dokument = new Document(text);
 	}
 
-	public GrundlegendeStatistik errechneGrundlegendeStatistik() { //TODO
-		GrundlegendeStatistik stat = new GrundlegendeStatistik();
-		stat.errechne(dokument);
-		return stat;
-	}
-	
-	public EigenschaftsStatistik errechneEigenschaftsStatistik() { //TODO
-		EigenschaftsStatistik stat = new EigenschaftsStatistik();
-		stat.errechne(dokument);
-		return stat;
-	}
+	//TODO
+//	public GrundlegendeStatistik errechneGrundlegendeStatistik() { //TODO
+//		GrundlegendeStatistik stat = new GrundlegendeStatistik();
+//		stat.errechne(dokument);
+//		return stat;
+//	}
+//	
+//	public EigenschaftsStatistik errechneEigenschaftsStatistik() { //TODO
+//		EigenschaftsStatistik stat = new EigenschaftsStatistik();
+//		stat.errechne(dokument);
+//		return stat;
+//	}
 
-	public void setDokument(Dokument dokument) {
+	public void setDokument(Document dokument) {
 		this.dokument = dokument;
 	}
 
-	public String ausgebeDokument() {
-		String str = ""; // TODO
-
-		for (Absatz absatz : dokument.getAbsaetze()) {
-			for (Satz satz : absatz.getSaetze()) {
-				str += "{";
-				for (Wort wort : satz.getWoerter()) {
-					str += wort.getWort() + "/" + wort.getWortart() + " ";
-				}
-				str += "}, ";
-			}
-			str += "\n";
-		}
-		return str;
-	}
+//	public String ausgebeDokument() {
+//		String str = ""; // TODO
+//
+//		for (Paragraph p : dokument.getChildElements()) {
+//			for (Sentence sentence : p.getChildElements()) {
+//				str += "{";
+//				for (Word word : sentence.getWoerter()) {
+//					str += wort.getWort() + "/" + wort.getWortart() + " ";
+//				}
+//				str += "}, ";
+//			}
+//			str += "\n";
+//		}
+//		return str;
+//	}
 }
