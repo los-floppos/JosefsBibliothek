@@ -25,16 +25,15 @@ public class JosefsSekretaerin {
 		return dokument;
 	}
 
-	public JosefsSekretaerin(String programmpfad, String dateipfad, Sprache sprache)
+	public JosefsSekretaerin(File programmpfad, File datei, Sprache sprache)
 			throws Exception, IOException {
-		OpenNlpSekretaerin.setInstanz(new OpenNlpSekretaerin(new File(
-				programmpfad), sprache));
+		OpenNlpSekretaerin.setInstanz(new OpenNlpSekretaerin(programmpfad, sprache));
 		DocumentLoader loader = new PlainTextDocumentLoader();
-		loader.loadFile(new File(dateipfad));
+		loader.loadFile(datei);
 		dokument = foo(loader.getLoadedDocument());
 	}
 
-	public Document foo(LoadedDocument bar) throws HumbugException {
+	private Document foo(LoadedDocument bar) throws HumbugException {
 		OpenNlpSekretaerin sekretaerin = OpenNlpSekretaerin.getInstanz();
 		int i = 0;
 		List<Paragraph> paragraphs = new ArrayList<Paragraph>();
