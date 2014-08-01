@@ -1,11 +1,17 @@
 package hardcode.papierjosef.bibliothek;
 
+import static org.junit.Assert.*;
 import hardcode.papierjosef.bibliothek.assistenz.JosefsSekretaerin;
 import hardcode.papierjosef.bibliothek.documentloader.PlainTextDocumentLoader;
+import hardcode.papierjosef.bibliothek.exception.BibliotheksZwischenfall;
+import hardcode.papierjosef.bibliothek.regel.LangeSaetzeRegel;
+import hardcode.papierjosef.bibliothek.regel.Regel;
+import hardcode.papierjosef.bibliothek.regel.RegelRahmenWerk;
 import hardcode.papierjosef.bibliothek.sprachen.DeutscheSprache;
 import hardcode.papierjosef.model.document.Document;
 import hardcode.papierjosef.model.document.Paragraph;
 import hardcode.papierjosef.model.document.Sentence;
+import hardcode.papierjosef.model.document.annotation.TextElementProperty;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,11 +35,11 @@ public class SekretaerinnenAssessmentCenter {
 
 	@Test
 	public void testeAnalyseFaehigkeiten() {
-		Document d = sek.getDokument();
-		assert d.getStart() == 0;
-		assert d.getEnd() == 664;
+		Document document = sek.getDokument();
+		assert document.getStart() == 0;
+		assert document.getEnd() == 664;
 
-		List<Paragraph> paragraphs = d.getChildElements();
+		List<Paragraph> paragraphs = document.getChildElements();
 		assert paragraphs.size() == 1;
 
 		List<Sentence> sents = paragraphs.get(0).getChildElements();
@@ -46,9 +52,37 @@ public class SekretaerinnenAssessmentCenter {
 		try {
 			ptdl.loadFile(f);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		sek.getDokument().getText().equals(ptdl.getText());
+	}
+	
+	@Test
+	public void regelRahmenwerkTest() {
+		Document document = sek.getDokument();
+		
+		RegelRahmenWerk rrw = new RegelRahmenWerk();
+		Regel langerSatz = new LangeSaetzeRegel();
+		try {
+			rrw.regelHinzufuegen(langerSatz);
+		} catch (BibliotheksZwischenfall e) {
+			e.printStackTrace();
+			System.out.println(e.getCode());
+		}
+		
+		rrw.fuehreSatzRegelnAus(document);	
+		
+		int nrOfLongSentences = 0;
+		
+		List<Paragraph> paragraphs = document.getChildElements();
+		for(Paragraph paragraph : paragraphs) {
+			List<Sentence> sentences = paragraph.getChildElements();
+			for(Sentence sentence : sentences) {
+				TextElementProperty tep = sentence.getProperty("LONG_SENTENCE");
+				if(tep != null)
+					nrOfLongSentences++;
+			}
+		}
+		assertTrue(nrOfLongSentences > 0);
 	}
 }
