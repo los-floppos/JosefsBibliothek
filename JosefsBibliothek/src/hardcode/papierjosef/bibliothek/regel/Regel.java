@@ -1,24 +1,24 @@
 package hardcode.papierjosef.bibliothek.regel;
 
+import java.lang.reflect.ParameterizedType;
+
 import hardcode.papierjosef.model.document.TextElement;
 
 
+@SuppressWarnings("rawtypes")
 public abstract class Regel<T extends TextElement> {
 	
-	private T t;
+	private Class<T> type;
 	
-	public Regel(T t) {
-		this.t = t;
+	@SuppressWarnings("unchecked")
+	public Regel() {
+		//Determine type of T
+		type = ((Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
 	}
-
-	public T getT() {
-		return t;
+	
+	public Class<T> getType() {
+		return type;
 	}
-
-	public void setT(T t) {
-		this.t = t;
-	}
-
-	public abstract void fuehreAus();
-
+	
+	public abstract void fuehreAus(T t);
 }

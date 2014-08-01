@@ -1,17 +1,15 @@
 package hardcode.papierjosef.bibliothek.regel;
 
 import hardcode.papierjosef.model.document.Sentence;
+import hardcode.papierjosef.model.document.annotation.TextElementProperty;
 
 public class LangeSaetzeRegel extends Regel<Sentence> {
-	public LangeSaetzeRegel(Sentence t) {
-		super(t);
-	}
-
 	@Override
-	public void fuehreAus() {
-		//TODO
-//		if (getT().getWoerter().size() > 20)
-//			getT().put("LANGER_SATZ", "true");
+	public void fuehreAus(Sentence t) {
+		int maxLength = 5;
+		if(t.size() > maxLength) {
+			TextElementProperty tep = new TextElementProperty("LONG_SENTENCE", "Langer Satz");
+			t.addProperty(tep);
+		}
 	}
-
 }
