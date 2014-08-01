@@ -10,6 +10,8 @@ public abstract class Regel<T extends TextElement> {
 	
 	private Class<T> type;
 	
+	//TODO: RegelName und RegelBeschreibung einfuegen
+	
 	@SuppressWarnings("unchecked")
 	public Regel() {
 		//Determine type of T

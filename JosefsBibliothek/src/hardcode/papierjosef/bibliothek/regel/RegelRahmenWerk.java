@@ -1,5 +1,6 @@
 package hardcode.papierjosef.bibliothek.regel;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,6 +37,10 @@ public class RegelRahmenWerk {
 		} else {
 			throw new BibliotheksZwischenfall("invalid_rule_class_type");
 		}
+	}
+	
+	public void importiereRegelAusKlassendatei(File name) {
+		
 	}
 	
 	public void fuehreDokumentRegelnAus(Document doc) {

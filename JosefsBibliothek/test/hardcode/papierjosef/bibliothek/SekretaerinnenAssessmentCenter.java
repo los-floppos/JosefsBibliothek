@@ -6,6 +6,7 @@ import hardcode.papierjosef.bibliothek.documentloader.PlainTextDocumentLoader;
 import hardcode.papierjosef.bibliothek.exception.BibliotheksZwischenfall;
 import hardcode.papierjosef.bibliothek.regel.LangeSaetzeRegel;
 import hardcode.papierjosef.bibliothek.regel.Regel;
+import hardcode.papierjosef.bibliothek.regel.RegelKlassenDateiLader;
 import hardcode.papierjosef.bibliothek.regel.RegelRahmenWerk;
 import hardcode.papierjosef.bibliothek.sprachen.DeutscheSprache;
 import hardcode.papierjosef.model.document.Document;
@@ -83,6 +84,45 @@ public class SekretaerinnenAssessmentCenter {
 					nrOfLongSentences++;
 			}
 		}
-		assertTrue(nrOfLongSentences > 0);
+		assertTrue(nrOfLongSentences == 1);
+	}
+	
+	@Test
+	public void ladeRegelKlasseTest() {
+		Document document = sek.getDokument();
+		
+		RegelRahmenWerk rrw = new RegelRahmenWerk();
+		RegelKlassenDateiLader lader = new RegelKlassenDateiLader();
+		Regel regel = null;
+
+		File testRegelFile = new File(System.getProperty("user.dir"));
+		
+		try {
+			regel = lader.ladeKlasse(testRegelFile, "TestRegel");
+		} catch (BibliotheksZwischenfall e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
+			rrw.regelHinzufuegen(regel);
+		} catch (BibliotheksZwischenfall e) {
+			e.printStackTrace();
+			System.out.println(e.getCode());
+		}
+		
+		rrw.fuehreSatzRegelnAus(document);	
+		
+		int nrOfLongSentences = 0;
+		
+		List<Paragraph> paragraphs = document.getChildElements();
+		for(Paragraph paragraph : paragraphs) {
+			List<Sentence> sentences = paragraph.getChildElements();
+			for(Sentence sentence : sentences) {
+				TextElementProperty tep = sentence.getProperty("LONG_SENTENCE");
+				if(tep != null)
+					nrOfLongSentences++;
+			}
+		}
+		assertTrue(nrOfLongSentences > 1);
 	}
 }
