@@ -1,10 +1,11 @@
 package hardcode.papierjosef.bibliothek.operation;
 
+import hardcode.papierjosef.bibliothek.operation.regel.Regel;
 import hardcode.papierjosef.model.document.Sentence;
 import hardcode.papierjosef.model.document.Word;
 import hardcode.papierjosef.model.document.annotation.TextElementProperty;
 
-public class ZuVieleADVProSatz extends Operation<Sentence> {
+public class ZuVieleADVProSatz extends Regel<Sentence> {
 
 	@Override
 	public void fuehreAus(Sentence t) {
