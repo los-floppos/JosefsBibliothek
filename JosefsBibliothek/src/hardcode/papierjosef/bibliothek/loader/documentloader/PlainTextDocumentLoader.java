@@ -1,7 +1,7 @@
-package hardcode.papierjosef.bibliothek.documentloader;
+package hardcode.papierjosef.bibliothek.loader.documentloader;
 
-import hardcode.papierjosef.bibliothek.documentloader.loadeddocs.LoadedDocument;
-import hardcode.papierjosef.bibliothek.documentloader.loadeddocs.LoadedParagraph;
+import hardcode.papierjosef.bibliothek.loader.documentloader.loadeddocs.LoadedDocument;
+import hardcode.papierjosef.bibliothek.loader.documentloader.loadeddocs.LoadedParagraph;
 
 public class PlainTextDocumentLoader extends TextDocumentLoader {
 	@Override

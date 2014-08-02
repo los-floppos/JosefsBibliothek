@@ -1,4 +1,4 @@
-package hardcode.papierjosef.bibliothek.documentloader;
+package hardcode.papierjosef.bibliothek.loader.documentloader;
 
 import java.io.BufferedReader;
 import java.io.File;

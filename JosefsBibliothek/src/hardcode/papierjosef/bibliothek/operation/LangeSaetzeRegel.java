@@ -1,9 +1,9 @@
-package hardcode.papierjosef.bibliothek.regel;
+package hardcode.papierjosef.bibliothek.operation;
 
 import hardcode.papierjosef.model.document.Sentence;
 import hardcode.papierjosef.model.document.annotation.TextElementProperty;
 
-public class LangeSaetzeRegel extends Regel<Sentence> {
+public class LangeSaetzeRegel extends Operation<Sentence> {
 	@Override
 	public void fuehreAus(Sentence t) {
 		int maxLength = 20;

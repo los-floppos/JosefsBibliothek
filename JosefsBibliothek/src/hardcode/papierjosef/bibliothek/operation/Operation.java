@@ -1,4 +1,4 @@
-package hardcode.papierjosef.bibliothek.regel;
+package hardcode.papierjosef.bibliothek.operation;
 
 import java.lang.reflect.ParameterizedType;
 
@@ -6,14 +6,14 @@ import hardcode.papierjosef.model.document.TextElement;
 
 
 @SuppressWarnings("rawtypes")
-public abstract class Regel<T extends TextElement> {
+public abstract class Operation<T extends TextElement> {
 	
 	private Class<T> type;
 	
 	//TODO: RegelName und RegelBeschreibung einfuegen
 	
 	@SuppressWarnings("unchecked")
-	public Regel() {
+	public Operation() {
 		//Determine type of T
 		type = ((Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
 	}

@@ -1,10 +1,10 @@
 package hardcode.papierjosef.bibliothek.assistenz;
 
-import hardcode.papierjosef.bibliothek.documentloader.DocumentLoader;
-import hardcode.papierjosef.bibliothek.documentloader.PlainTextDocumentLoader;
-import hardcode.papierjosef.bibliothek.documentloader.loadeddocs.LoadedDocument;
-import hardcode.papierjosef.bibliothek.documentloader.loadeddocs.LoadedParagraph;
-import hardcode.papierjosef.bibliothek.sprachen.Sprache;
+import hardcode.papierjosef.bibliothek.loader.documentloader.loadeddocs.LoadedDocument;
+import hardcode.papierjosef.bibliothek.loader.documentloader.loadeddocs.LoadedParagraph;
+import hardcode.papierjosef.bibliothek.loader.documentloader.DocumentLoader;
+import hardcode.papierjosef.bibliothek.loader.documentloader.PlainTextDocumentLoader;
+import hardcode.papierjosef.bibliothek.sprachen.Language;
 import hardcode.papierjosef.model.document.Document;
 import hardcode.papierjosef.model.document.HumbugException;
 import hardcode.papierjosef.model.document.Paragraph;
@@ -20,24 +20,56 @@ import java.util.List;
 
 public class JosefsSekretaerin {
 	private Document dokument;
+	private Language sprache;
 
+	/**
+	 * @return Document
+	 */
 	public Document getDokument() {
+		//TODO: KOPIE zurueckgeben
 		return dokument;
 	}
-
-	public JosefsSekretaerin(File programmpfad, File datei, Sprache sprache)
-			throws Exception, IOException {
-		OpenNlpSekretaerin.setInstanz(new OpenNlpSekretaerin(programmpfad, sprache));
-		DocumentLoader loader = new PlainTextDocumentLoader();
-		loader.loadFile(datei);
-		dokument = foo(loader.getLoadedDocument());
+	
+//	public void setDokument(Document dokument) {
+//		this.dokument = dokument;
+//	}
+	
+	/**
+	 * Gibt die Sprache der Sekretaerin zurueck
+	 * @return Language
+	 */
+	public Language getSprache() {
+		return sprache;
 	}
 
-	private Document foo(LoadedDocument bar) throws HumbugException {
+	/**
+	 * Erstellt eine neue Sekretaerin. Laedt eine Datei. Laedt das NLP-Model fuer die gegebene Sprache
+	 *  
+	 * @param datei File: Zu ueberpruefende Datei
+	 * @param sprache Sprache: Eine Instanz der Sprache der zu ueperpruefenden Datei
+	 * @throws Exception
+	 * @throws IOException
+	 */
+	public JosefsSekretaerin(File datei, Language sprache) throws Exception, IOException {
+		this.sprache = sprache;
+		
+		OpenNlpSekretaerin.setInstanz(new OpenNlpSekretaerin(sprache));
+		DocumentLoader loader = new PlainTextDocumentLoader();
+		loader.loadFile(datei);
+		dokument = bestimmeWortarten(loader.getLoadedDocument());
+	}
+
+	/**
+	 * 
+	 * @param loadedDocument
+	 * @return
+	 * @throws HumbugException
+	 */
+	private Document bestimmeWortarten(LoadedDocument loadedDocument) throws HumbugException {
 		OpenNlpSekretaerin sekretaerin = OpenNlpSekretaerin.getInstanz();
 		int i = 0;
 		List<Paragraph> paragraphs = new ArrayList<Paragraph>();
-		for (LoadedParagraph p : bar.getLoadedParagraphs()) {
+		for (LoadedParagraph p : loadedDocument.getLoadedParagraphs()) {
 			List<Sentence> sents = new ArrayList<Sentence>();
 			for (String sentence : p.getLoadedSentences()) {
 				String tokens[] = sekretaerin.getTokenizer().tokenize(sentence);
@@ -73,9 +105,7 @@ public class JosefsSekretaerin {
 	// return stat;
 	// }
 
-	public void setDokument(Document dokument) {
-		this.dokument = dokument;
-	}
+	
 
 	// public String ausgebeDokument() {
 	// String str = ""; // TODO

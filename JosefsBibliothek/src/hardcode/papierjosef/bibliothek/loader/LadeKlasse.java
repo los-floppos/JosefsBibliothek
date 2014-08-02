@@ -1,7 +1,6 @@
-package hardcode.papierjosef.bibliothek.regel;
+package hardcode.papierjosef.bibliothek.loader;
 
 import hardcode.papierjosef.bibliothek.exception.BibliotheksZwischenfall;
-import hardcode.papierjosef.model.document.TextElement;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,24 +9,29 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 /**
- * Laedt eine Regel aus einer class-Datei ein.
+ * Laedt eine Klasse des Typs T aus einer class-Datei ein.
  */
-public class RegelKlassenDateiLader{
+public class LadeKlasse<T> {
+	
+	public LadeKlasse() {
+		
+	}
+	
 	/**
-	 * Laedt eine Regel aus einer class-Datei
-	 * @param pfad File: Pfad zum Ordner, in dem sich die Regel-Klassendatei befindet
-	 * @param regelKlassenName String: Name der Regel-Klassendatei, ohne .class.
-	 * Also z.B. nur "TestRegel".
-	 * @return Regel: Die geladene Regel
+	 * Laedt eine Klasse des Typs T aus einer class-Datei
+	 * @param pfad File: Pfad zum Ordner, in dem sich die Klassendatei befindet
+	 * @param klassenName String: Name der Klassendatei, ohne .class, also z.B. nur "Klassenname".
+	 * @return T: Die geladene Klasse
 	 * @throws BibliotheksZwischenfall
 	 */
-	public static Regel ladeKlasse(File pfad, String regelKlassenName) throws BibliotheksZwischenfall  {
-		Regel regel = null;
+	public T ladeKlasse(File pfad, String klassenName) throws BibliotheksZwischenfall  {
+		T object = null;
 		try{	
 			URL url = pfad.toURI().toURL();		
-			URLClassLoader loader = new URLClassLoader(new URL[]{url}, Regel.class.getClassLoader());
-			Class c = loader.loadClass(regelKlassenName);
-			regel = (Regel) c.newInstance();
+			//URLClassLoader loader = new URLClassLoader(new URL[]{url}, Regel.class.getClassLoader());
+			URLClassLoader loader = new URLClassLoader(new URL[]{url});
+			Class c = loader.loadClass(klassenName);
+			object = (T) c.newInstance();
 			loader.close();
 		} catch (MalformedURLException e) {
 			throw new BibliotheksZwischenfall("MalformedURLException");
@@ -40,6 +44,6 @@ public class RegelKlassenDateiLader{
 		} catch (IllegalAccessException e) {
 			throw new BibliotheksZwischenfall("IllegalAccessException");
 		}
-		return regel;
+		return object;
 	}
 }

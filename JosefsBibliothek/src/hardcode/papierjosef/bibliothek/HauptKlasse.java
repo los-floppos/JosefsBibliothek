@@ -3,9 +3,14 @@ package hardcode.papierjosef.bibliothek;
 import java.io.File;
 import java.io.IOException;
 
-import hardcode.papierjosef.bibliothek.documentloader.DocumentLoader;
-import hardcode.papierjosef.bibliothek.documentloader.PlainTextDocumentLoader;
-import hardcode.papierjosef.bibliothek.documentloader.loadeddocs.LoadedDocument;
+import hardcode.papierjosef.bibliothek.assistenz.JosefsSekretaerin;
+import hardcode.papierjosef.bibliothek.loader.documentloader.DocumentLoader;
+import hardcode.papierjosef.bibliothek.loader.documentloader.PlainTextDocumentLoader;
+import hardcode.papierjosef.bibliothek.sprachen.Deutsch;
+import hardcode.papierjosef.model.document.Document;
+import hardcode.papierjosef.model.document.Paragraph;
+import hardcode.papierjosef.model.document.Sentence;
+import hardcode.papierjosef.model.document.Word;
 
 public class HauptKlasse {
 	
@@ -18,7 +23,28 @@ public class HauptKlasse {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		LoadedDocument loadedDoc = dl.getLoadedDocument();
+		
+		File f = new File("test-document-gelaber.txt");
+		JosefsSekretaerin sek = null;
+		
+		try {
+			sek = new JosefsSekretaerin(f, new Deutsch());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Document doc = sek.getDokument();
+				
+		for(Paragraph p : doc.getChildElements()) {
+			for(Sentence s : p.getChildElements()) {
+				System.out.println("#");
+				for(Word w : s.getChildElements()) {
+					System.out.println(w.getWord() + ": " + w.getPartOfSpeech().getPartOfSpeechName());
+				}
+			}
+		}
+		
+		
 	}
 	
 //	public static void main(String[] args) {

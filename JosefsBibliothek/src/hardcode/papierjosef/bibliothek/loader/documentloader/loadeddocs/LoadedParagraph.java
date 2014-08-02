@@ -1,4 +1,4 @@
-package hardcode.papierjosef.bibliothek.documentloader.loadeddocs;
+package hardcode.papierjosef.bibliothek.loader.documentloader.loadeddocs;
 
 import java.util.ArrayList;
 import java.util.List;

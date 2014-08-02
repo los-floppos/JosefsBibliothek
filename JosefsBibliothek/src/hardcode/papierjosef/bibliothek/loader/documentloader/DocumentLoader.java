@@ -1,6 +1,8 @@
-package hardcode.papierjosef.bibliothek.documentloader;
+package hardcode.papierjosef.bibliothek.loader.documentloader;
 
-import hardcode.papierjosef.bibliothek.documentloader.loadeddocs.LoadedDocument;
+
+
+import hardcode.papierjosef.bibliothek.loader.documentloader.loadeddocs.LoadedDocument;
 
 import java.io.File;
 import java.io.IOException;

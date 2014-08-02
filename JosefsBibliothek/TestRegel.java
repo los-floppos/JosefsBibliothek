@@ -1,8 +1,8 @@
-import hardcode.papierjosef.bibliothek.regel.Regel;
+import hardcode.papierjosef.bibliothek.operation.Operation;
 import hardcode.papierjosef.model.document.Sentence;
 import hardcode.papierjosef.model.document.annotation.TextElementProperty;
 
-public class TestRegel extends Regel<Sentence> {
+public class TestRegel extends Operation<Sentence> {
 	//@Override
 	public void fuehreAus(Sentence t) {
 		int maxLength = 5;

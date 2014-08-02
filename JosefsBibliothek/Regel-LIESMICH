@@ -1,19 +1,6 @@
-So muss eine Regel Java-Datei aussehen.
+So muss eine Regel Java-Datei aussehen: Siehe TestRegel.java
 Diese kann dann auf der Kommandozeile kompiliert werden mit 
 	javac -classpath ".:./JosefsBibliothek.jar:./DocumentModel.jar" #RegelName.java
 Dafür müssen die aktuellen exportieren Jars des DocumentModel und der Bibliothek
 in demselben Verzeichnis wie die zu kompilierende Regel liegen 
 (oder ggf. -classpath Option anpassen)
-
-#################################
-import hardcode.papierjosef.bibliothek.regel.Regel;
-import hardcode.papierjosef.model.document.Sentence;
-import hardcode.papierjosef.model.document.annotation.TextElementProperty;
-
-public class #RegelName extends Regel<#DocumentModelTyp> {
-	//@Override
-	public void fuehreAus(Sentence t) {
-		//TODO: implement
-	}
-}
-#################################

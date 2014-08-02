@@ -1,18 +1,28 @@
 package hardcode.papierjosef.bibliothek.sprachen;
 
-public class DeutscheSprache implements Sprache {
+public class Deutsch implements Language {
 
 	@Override
-	public String getSprache() {
+	public String getLanguage() {
 		return "de";
 	}
 
 	@Override
-	public String[] getStoppwoerter() {
+	public String[] getStopwords() {
 		return stopWords;
 	}
 	
-	String[] stopWords = new String[] {"aber", "als", "am", "an", "auch", "auf", "aus", "bei", "bin", "bis", "bist", "da", "dadurch", "daher", "darum", "das", "daß", "dass", "dein",
+	@Override
+	public String[] getSingleFloskels() {
+		return singleFloskels;
+	}
+
+	@Override
+	public String[] getMultiFloskels() {
+		return multiFloskels;
+	}
+	
+	private String[] stopWords = new String[] {"aber", "als", "am", "an", "auch", "auf", "aus", "bei", "bin", "bis", "bist", "da", "dadurch", "daher", "darum", "das", "daß", "dass", "dein",
 		"deine", "dem", "den", "der", "des", "dessen", "deshalb", "die", "dies", "dieser", "dieses", "doch", "dort", "du", "durch", "ein", "eine", "einem",
 		"einen", "einer", "eines", "er", "es", "euer", "eure", "für", "hatte", "hatten", "hattest", "hattet", "hier", "hinter", "ich", "ihr", "ihre",
 		"ihm", "ihn", "im", "in", "ist", "ja", "jede", "jedem", "jeden", "jeder", "jedes", "jener", "jenes", "jetzt", "kann", "kannst", "können", "könnt",
@@ -21,7 +31,7 @@ public class DeutscheSprache implements Sprache {
 		"wann", "war","warum", "was", "weiter", "weitere", "wenn", "wer", "werde", "werden", "werdet", "weshalb", "wie", "wieder", "wieso", "wir", "wird","wirst",
 		"wo","woher", "wohin", "zu", "zum", "zur", "über"};
 
-	String[] multiFloskel = new String[] {"halt eben", "an der Stelle", "an dieser Stelle", "im Endeffekt", "ein Stück weit",
+	private String[] multiFloskels = new String[] {"halt eben", "an der Stelle", "an dieser Stelle", "im Endeffekt", "ein Stück weit",
 		"gesetzt den Fall", "nicht wirklich", "sage ich jetzt mal", "ich würde meinen", "in der Hinsicht",
 		"in der Situation","vor Ort", "ist ja nicht an dem", "mehr oder minder", "mehr oder weniger", "vom Prinzip",
 		"vom Grundsatz", "vom Ding", "von daher gesehen", "von der Sache her", "ich denke", "wie gesagt", "wenn man so will",
@@ -30,7 +40,7 @@ public class DeutscheSprache implements Sprache {
 		"im Grunde genommen", "im Prinzip", "in der Tat", "in diesem Zusammenhang", "mehr oder weniger", "meines Erachtens",
 		"ohne weiteres", "ohne Zweifel", "samt und sonders", "sowohl als auch", "üblicher Weise", "voll und ganz", "von neuem"};
 
-	String[] singleFloskel = new String[] {"dahingehend", "dementsprechend", "sozusagen", "diesbezüglich", "letztendlich",
+	private String[] singleFloskels = new String[] {"dahingehend", "dementsprechend", "sozusagen", "diesbezüglich", "letztendlich",
 		"letztlich", "endlich", "einfach", "eh", "vollumfänglich", "quasi", "aber", "abermals", "allein", "allemal", "allenfalls",
 		"allenthalben", "allerdings", "allesamt", "allzu", "also", "alt", "andauernd", "andererseits", "andernfalls",
 		"anscheinend", "auch", "auffallend", "augenscheinlich", "ausdrücklich", "ausgerechnet", "ausnahmslos", "außerdem",
@@ -58,5 +68,4 @@ public class DeutscheSprache implements Sprache {
 		"wahrscheinlich", "weidlich", "weitgehend", "wenigstens", "wieder", "wiederum", "wirklich", "wohl", "wohlgemerkt",
 		"womöglich", "ziemlich", "zudem", "zugegeben", "zumeist", "zusehends", "zusehens", "zuweilen", "zweifellos",
 		"zweifelsfrei", "zweifelsohne"};
-
 }

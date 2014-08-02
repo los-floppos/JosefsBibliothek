@@ -1,6 +1,6 @@
 package hardcode.papierjosef.bibliothek.assistenz;
 
-import hardcode.papierjosef.bibliothek.sprachen.Sprache;
+import hardcode.papierjosef.bibliothek.sprachen.Language;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,9 +22,16 @@ public class OpenNlpSekretaerin {
 	private POSTaggerME tagger;
 	private static OpenNlpSekretaerin instanz;
 	
-	OpenNlpSekretaerin(File programmPfad, Sprache sprache) throws InvalidFormatException, IOException {
+	/**
+	 * Laedt das NLP-Modell einer Sprache. Die NLP-Modelle muessen in "sprachen/[SPRACHE]/nlpmodels" liegen
+	 * @param sprache Sprache: Die Sprache
+	 * @throws InvalidFormatException
+	 * @throws IOException
+	 */
+	OpenNlpSekretaerin(Language sprache) throws InvalidFormatException, IOException {
 		//lade Sprachmodell
-		String pfad= programmPfad + File.separator + "opennlpmodels/"+sprache.getSprache();
+		String pfad= System.getProperty("user.dir") +  File.separator +"sprachen" + 
+				File.separator + sprache.getLanguage() + File.separator + "nlpmodels/"+sprache.getLanguage();
 		FileInputStream sentModelIn = new FileInputStream(pfad + "-sent.bin");
 		InputStream tokenModelIn = new FileInputStream(pfad + "-token.bin");
 		InputStream posModelIn = new FileInputStream(pfad + "-pos-maxent.bin");
